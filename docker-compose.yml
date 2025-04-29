@@ -14,6 +14,7 @@ services:
       - '8088:8000'
     environment:
       - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@postgresql/${DATABASE_DB}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
       - DJANGO_DEBUG=${DJANGO_DEBUG}
       - DJANGO_DEV=${DJANGO_DEV}
       - ENABLE_INSIGHTS=${ENABLE_INSIGHTS}
