@@ -49,8 +49,13 @@ ENV TERSER_BINARY /app/node_modules/.bin/terser
 COPY --chown=pontoon:pontoon pontoon/package.json .
 RUN npm install
 
-COPY --chown=pontoon:pontoon ./docker/config/server.env .env
+#COPY --chown=pontoon:pontoon ./docker/config/server.env .env
 COPY --chown=pontoon:pontoon . /app/
+
+ARG SSH_PRIVATE_KEY
+RUN mkdir -p /home/pontoon/.ssh \
+    && echo "$SSH_PRIVATE_KEY" > /home/pontoon/.ssh/id_ed25519 \
+    && chmod 600 /home/pontoon/.ssh/id_ed25519
 
 RUN python manage.py collectstatic
 
