@@ -12,23 +12,26 @@ services:
       - postgresql
     ports:
       - '8088:8000'
-    volumes:
-      - ./pontoon:/app/pontoon
-      - ./requirements:/app/requirements
-      - ./translate:/app/translate
-      - ~/.ssh:/home/pontoon/.ssh
+    environment:
+      - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@postgresql/${POSTGRES_DB}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DJANGO_DEV=${DJANGO_DEV}
+      - ENABLE_INSIGHTS=${ENABLE_INSIGHTS}
+      - FXA_CLIENT_ID=${FXA_CLIENT_ID}
+      - FXA_OAUTH_ENDPOINT=${FXA_OAUTH_ENDPOINT}
+      - FXA_PROFILE_ENDPOINT=${FXA_PROFILE_ENDPOINT}
+      - FXA_SECRET_KEY=${FXA_SECRET_KEY}
+      - LOG_TO_FILE=${LOG_TO_FILE}
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=${PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION}
+      - SECRET_KEY=${SECRET_KEY}
+      - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE}
+      - SITE_URL=${SITE_URL}
 
   # Database
   postgresql:
-    image: postgres:15
+    image: postgres:17
     environment:
       # Create the superuser account
-      - POSTGRES_USER=pontoon
-      - POSTGRES_PASSWORD=asdf
-      - POSTGRES_DB=pontoon
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-# Persist database
-volumes:
-  pgdata: null
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
