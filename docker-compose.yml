@@ -8,8 +8,6 @@ services:
       dockerfile: ./docker/Dockerfile
       target: server
     image: local/pontoon
-    env_file:
-      - docker/config/server.env
     depends_on:
       - postgresql
     ports:
