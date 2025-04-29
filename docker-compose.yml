@@ -11,7 +11,7 @@ services:
     depends_on:
       - postgresql
     ports:
-      - '8000:8000'
+      - '8088:8000'
     volumes:
       - ./pontoon:/app/pontoon
       - ./requirements:/app/requirements
