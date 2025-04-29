@@ -13,7 +13,7 @@ services:
     ports:
       - '8088:8000'
     environment:
-      - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@postgresql/${POSTGRES_DB}
+      - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@postgresql/${DATABASE_DB}
       - DJANGO_DEBUG=${DJANGO_DEBUG}
       - DJANGO_DEV=${DJANGO_DEV}
       - ENABLE_INSIGHTS=${ENABLE_INSIGHTS}
@@ -34,5 +34,5 @@ services:
     environment:
       # Create the superuser account
       - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DB}
