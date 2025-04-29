@@ -26,6 +26,7 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE}
       - SITE_URL=${SITE_URL}
+      - SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}
 
   # Database
   postgresql:
